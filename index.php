@@ -26,6 +26,29 @@ switch($_SERVER['REQUEST_METHOD']){
     case "GET":
         if(isset($_GET['accion'])){
             switch($_GET['accion']){
+                case 'consultar':
+                    include './ConsultaMovimientos.php';
+                    switch($_GET["listado"]){
+                        case "A":
+                            echo consultaTotalDeposito();
+                            break;
+                        case "B":
+                            consultaDepositoUsuario();
+                            break;
+                        case "C":
+                            consultaEntreDosFechas();
+                            break;
+                        case "D":
+                            consultaPorTipoCuenta();
+                            break;
+                        case "E":
+                            consultaPorMoneda();
+                            break;
+                        default:
+                            echo 'No existe el listado';
+                            break;
+                    }
+                    break;
             }
         }else{
             echo "Error. Faltan parametros.";

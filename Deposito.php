@@ -62,7 +62,82 @@ class Deposito{
         $destino = $ruta."\\".$this->tipoCuenta."-".$this->numeroCuenta."-".$this->id.".png";
         return $destino;
     }
-     
+    /*El total depositado (monto) por tipo de cuenta y moneda en un día en
+    particular (se envía por parámetro), si no se pasa fecha, se muestran las del día
+    anterior.*/
+    public static function DepositoPorCuentaYMoneda($tipoCuenta, $moneda, $fecha){
+        $total = 0;
+        $depositos = Deposito::LeerJSONDeposito();
+        if(count($depositos)>0){
+            foreach($depositos as $deposito){
+                if($deposito->tipoCuenta == $tipoCuenta && $deposito->fecha == $fecha && $deposito->moneda == $moneda){
+                    $total += $deposito->deposito;
+                }
+            }
+            return $total;
+        }
+    }
+
+    public static function DepositosPorUsuario($numeroCuenta){
+        $depositosUsuario = array();
+        $depositos = Deposito::LeerJSONDeposito();
+        if(count($depositos)>0){
+            foreach($depositos as $deposito){
+                if($deposito->numeroCuenta == $numeroCuenta){
+                    array_push($depositosUsuario, $deposito);
+                }
+            }
+            return $depositosUsuario;
+        }
+        return false;
+    } 
+
+    public static function MostrarDepositos($depositos){
+        if(count($depositos)>0){
+            foreach($depositos as $deposito){
+                echo "ID: ", $deposito->id, "\n";
+                echo "Tipo Cuenta: ", $deposito->tipoCuenta, "\n";
+                echo "Numero Cuenta: ", $deposito->numeroCuenta, "\n";
+                echo "Moneda: ", $deposito->moneda, "\n";
+                echo "Deposito: ", $deposito->deposito, "\n";
+                echo "Fecha: ", $deposito->fecha, "\n\n";
+            }
+        }
+    }
+
+    public function FechaDentroRango($fechaInicio, $fechaLimite)
+    {
+        $fechaDeposito = strtotime($this->fecha);
+        $inicio = strtotime($fechaInicio);
+        $fin = strtotime($fechaLimite);
+        if($fechaDeposito >= $inicio && $fechaDeposito <=$fin)
+        {
+            return true;
+        }
+        return false;
+    }
+    public static function FiltrarDepositosPorFecha($fechaInicio, $fechaLimite)
+    {
+        $nuevoArrayFiltrado = array();
+        $depositos = Deposito::LeerJSONDeposito();
+        if(count($depositos) > 0)
+        {
+            foreach($depositos as $deposito){
+                if($deposito->FechaDentroRango($fechaInicio, $fechaLimite)){
+                    array_push($nuevoArrayFiltrado, $deposito);
+                }
+            }
+        }
+        return $nuevoArrayFiltrado;
+    }
+
+    public static function CompararNumeroCuenta($a, $b){
+        return $a->numeroCuenta > $b->numeroCuenta;
+    }
+    public static function OrdenarDepositosPorNumeroCuenta($depositos){
+        usort($depositos, 'Deposito::CompararNumeroCuenta');
+        return $depositos;
+    }
 }
 
 

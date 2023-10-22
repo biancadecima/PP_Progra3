@@ -22,7 +22,6 @@ function depositoCuenta($ruta){
         $imagen = $_FILES["imagen"];
         if($cuenta = Cuenta::CuentaExiste($numeroCuenta)){
             $nuevoSaldo = $cuenta->saldo + $deposito;
-            var_dump($nuevoSaldo);
             $cuenta->ActualizarSaldo($nuevoSaldo);
             $deposito = new Deposito($tipoCuenta, $numeroCuenta, $moneda, $deposito);
             $depositos = Deposito::LeerJSONDeposito();

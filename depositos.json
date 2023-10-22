@@ -1,1 +1,5 @@
-[{"id":211,"tipoCuenta":"Caja Ahorro","numeroCuenta":"711808","moneda":"Dolar","deposito":"2000","fecha":"20-10-2023"},{"id":697,"tipoCuenta":"Caja Ahorro","numeroCuenta":"711808","moneda":"Dolar","deposito":"2000","fecha":"20-10-2023"}]
+[{"id":211,"tipoCuenta":"Caja Ahorro","numeroCuenta":"711808","moneda":"Dolar","deposito":"2000","fecha":"20-10-2023"},
+{"id":697,"tipoCuenta":"Caja Ahorro","numeroCuenta":"711809","moneda":"Dolar","deposito":"6000","fecha":"21-10-2023"},
+{"id":333,"tipoCuenta":"CA","numeroCuenta":"711800","moneda":"Peso","deposito":"9000","fecha":"22-10-2023"},
+{"id":245,"tipoCuenta":"Caja Ahorro","numeroCuenta":"711908","moneda":"Dolar","deposito":"10000","fecha":"23-10-2023"},
+{"id":210,"tipoCuenta":"CC","numeroCuenta":"711898","moneda":"Peso","deposito":"3000","fecha":"15-10-2023"}]
