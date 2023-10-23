@@ -102,6 +102,59 @@ class Cuenta{
         }
         return false;
     }
+
+    public static function ModificarCuenta($numeroCuenta, $tipoCuenta, $nombre, $tipoDoc, $numeroDoc, $mail, $moneda){
+        $cuentas = Cuenta::LeerJSONCuenta();
+        if(count($cuentas)> 0){
+            foreach($cuentas as &$cuenta){
+                if($cuenta->numeroCuenta == $numeroCuenta && $cuenta->tipoCuenta == $tipoCuenta){
+                    $cuenta->nombre = $nombre;
+                    $cuenta->tipoDoc = $tipoDoc;
+                    $cuenta->numeroDoc = $numeroDoc;
+                    $cuenta->mail = $mail;
+                    $cuenta->moneda = $moneda;
+                    Cuenta::EscribirJSONCuenta($cuentas);
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public static function RetirarDinero($numeroCuenta, $monto){
+        $cuentas = Cuenta::LeerJSONCuenta();
+        if(count($cuentas)> 0){
+            foreach($cuentas as &$cuenta){
+                if($cuenta->numeroCuenta == $numeroCuenta){
+                    if($cuenta->saldo > $monto){
+                        $cuenta->saldo = $cuenta->saldo - $monto;
+                        Cuenta::EscribirJSONCuenta($cuentas);
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+    public static function AjustarCuenta($numeroCuenta, $ajuste){
+        var_dump($numeroCuenta);
+        $cuentas = Cuenta::LeerJSONCuenta();
+        if(count($cuentas)> 0){
+            foreach($cuentas as &$cuenta){
+                if($cuenta->numeroCuenta == $numeroCuenta){
+                    var_dump($cuenta->numeroCuenta);
+                    //var_dump($numeroCuenta);
+                    $cuenta->saldo = $cuenta->saldo - $ajuste;
+                    Cuenta::EscribirJSONCuenta($cuentas);
+                    return true;
+                }
+            }
+        }
+       
+        return false;
+    }
    
 }
 ?>

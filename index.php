@@ -18,6 +18,18 @@ switch($_SERVER['REQUEST_METHOD']){
                     include './DepositoCuenta.php';
                     echo depositoCuenta($rutaImagenDeposito);
                     break;
+                case 'modificar':
+                    include './ModificarCuenta.php';
+                    modificarCuenta();
+                    break;
+                case 'retirar':
+                    include './RetiroCuenta.php';
+                    retirarCuenta();
+                    break;
+                case 'ajustar':
+                    include './AjusteCuenta.php';
+                    ajusteCuenta();
+                    break;
                 }
         }else{
             echo "Error. Faltan parametros.";

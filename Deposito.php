@@ -62,9 +62,7 @@ class Deposito{
         $destino = $ruta."\\".$this->tipoCuenta."-".$this->numeroCuenta."-".$this->id.".png";
         return $destino;
     }
-    /*El total depositado (monto) por tipo de cuenta y moneda en un día en
-    particular (se envía por parámetro), si no se pasa fecha, se muestran las del día
-    anterior.*/
+    
     public static function DepositoPorCuentaYMoneda($tipoCuenta, $moneda, $fecha){
         $total = 0;
         $depositos = Deposito::LeerJSONDeposito();
@@ -138,6 +136,31 @@ class Deposito{
         usort($depositos, 'Deposito::CompararNumeroCuenta');
         return $depositos;
     }
+
+    public static function BuscarDeposito($id){
+        $depositos = Deposito::LeerJSONDeposito();
+        foreach($depositos as $deposito){
+            if($deposito->id == $id){
+                return $deposito;
+            }
+        }
+        return false;
+    }
+
+    /*public static function AjustarDepositoEnCuenta($numeroCuenta, $ajuste){
+        $cuentas = Cuenta::LeerJSONCuenta();
+        foreach($cuentas as &$cuenta){
+            if($cuenta->numeroCuenta == $numeroCuenta){
+                $cuenta->saldo = $cuenta->saldo - $ajuste;
+                Cuenta::EscribirJSONCuenta($cuentas);
+                return true;
+            }
+        }
+        return false;
+
+    }*/
+
+    
 }
 
 
