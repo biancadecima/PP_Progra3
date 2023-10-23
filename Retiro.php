@@ -58,11 +58,11 @@ class Retiro{
         return false;
     }
 
-    public static function BuscarMontoRetiro($id){
+    public static function BuscarRetiro($id){
         $retiros = Retiro::LeerJSONRetiro();
         foreach($retiros as $retiro){
             if($retiro->id == $id){
-                return $retiro->monto;
+                return $retiro;
             }
         }
         return false;

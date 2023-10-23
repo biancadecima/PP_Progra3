@@ -12,10 +12,8 @@ function ajusteCuenta(){
         $motivo = $_POST["motivo"];
         if($motivo == "deposito"){
             if($deposito = Deposito::BuscarDeposito($idOperacion)){
-                //var_dump($montoAjusteDeposito);
                 $ajuste = new Ajuste($idOperacion, $motivo, $deposito->deposito);
                 if(Cuenta::AjustarCuenta($deposito->numeroCuenta, $deposito->deposito)){
-                    //Cuenta::EscribirJSONCuenta($cuentasAjustada);
                     $ajustes = Ajuste::LeerJSONAjuste();
                     $ajustes[] = $ajuste;
                     Ajuste::EscribirJSONAjuste($ajustes);
@@ -28,15 +26,16 @@ function ajusteCuenta(){
                 echo "El deposito no existe";
             }
         }else if($motivo == "retiro"){
-            if($montoAjusteRetiro = Retiro::BuscarMontoRetiro($idOperacion)){
-                $ajuste = new Ajuste($idOperacion, $motivo, $montoAjusteRetiro);
-                $cuentasAjustada = Retiro::AjustarRetiroEnCuenta($idOperacion, $montoAjusteRetiro);
-                Cuenta::EscribirJSONCuenta($cuentasAjustada);
-                $ajustes = Ajuste::LeerJSONAjuste();
-                $ajustes = $ajuste;
-                Ajuste::EscribirJSONAjuste($ajustes);
-                echo "El ajuste de retiro se realizó exitosamente";
-                
+            if($retiro = Retiro::BuscarRetiro($idOperacion)){
+                $ajuste = new Ajuste($idOperacion, $motivo, $retiro->monto);
+                if(Cuenta::AjustarCuenta($retiro->numeroCuenta, (-$retiro->monto))){
+                    $ajustes = Ajuste::LeerJSONAjuste();
+                    $ajustes[] = $ajuste;
+                    Ajuste::EscribirJSONAjuste($ajustes);
+                    echo "El ajuste de retiro se realizó exitosamente";
+                }else{
+                    echo "No se encontro el numero de cuenta";
+                }
             }else{
                 echo "El retiro no existe";
             }

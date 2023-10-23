@@ -139,13 +139,10 @@ class Cuenta{
     }
 
     public static function AjustarCuenta($numeroCuenta, $ajuste){
-        var_dump($numeroCuenta);
         $cuentas = Cuenta::LeerJSONCuenta();
         if(count($cuentas)> 0){
             foreach($cuentas as &$cuenta){
                 if($cuenta->numeroCuenta == $numeroCuenta){
-                    var_dump($cuenta->numeroCuenta);
-                    //var_dump($numeroCuenta);
                     $cuenta->saldo = $cuenta->saldo - $ajuste;
                     Cuenta::EscribirJSONCuenta($cuentas);
                     return true;
