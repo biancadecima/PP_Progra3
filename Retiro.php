@@ -68,19 +68,5 @@ class Retiro{
         return false;
     }
 
-    public static function AjustarRetiroEnCuenta($numeroCuenta, $ajuste){
-        $cuentas = Cuenta::LeerJSONCuenta();
-        foreach($cuentas as &$cuenta){
-            if($cuenta->numeroCuenta == $numeroCuenta){
-                $cuenta->saldo = $cuenta->saldo + $ajuste;
-                return $cuentas;
-            }
-        }
-        return false;
-
-    }
-
-
-
 }
 ?>

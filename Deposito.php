@@ -147,18 +147,6 @@ class Deposito{
         return false;
     }
 
-    /*public static function AjustarDepositoEnCuenta($numeroCuenta, $ajuste){
-        $cuentas = Cuenta::LeerJSONCuenta();
-        foreach($cuentas as &$cuenta){
-            if($cuenta->numeroCuenta == $numeroCuenta){
-                $cuenta->saldo = $cuenta->saldo - $ajuste;
-                Cuenta::EscribirJSONCuenta($cuentas);
-                return true;
-            }
-        }
-        return false;
-
-    }*/
 
     
 }

@@ -18,10 +18,6 @@ switch($_SERVER['REQUEST_METHOD']){
                     include './DepositoCuenta.php';
                     echo depositoCuenta($rutaImagenDeposito);
                     break;
-                case 'modificar':
-                    include './ModificarCuenta.php';
-                    modificarCuenta();
-                    break;
                 case 'retirar':
                     include './RetiroCuenta.php';
                     retirarCuenta();
@@ -35,6 +31,19 @@ switch($_SERVER['REQUEST_METHOD']){
             echo "Error. Faltan parametros.";
         }   
     break;
+    case "PUT":
+        parse_str(file_get_contents('php://input'), $_PUT);
+        if(isset($_PUT['accion'])){
+            switch($_PUT['accion']){
+            case 'modificar':
+                include './ModificarCuenta.php';
+                modificarCuenta($_PUT);
+                break;
+            }
+        }else{
+            echo "Error. Faltan parametros.";
+        }   
+        break;
     case "GET":
         if(isset($_GET['accion'])){
             switch($_GET['accion']){
