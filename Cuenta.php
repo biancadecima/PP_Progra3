@@ -39,6 +39,12 @@ class Cuenta{
         $this->saldo = $saldo;
     }
 
+    public function getMoneda(){
+        $arrayTipo = explode(" ", $this->tipoCuenta);
+        $moneda = $arrayTipo[1];
+        return $moneda;
+    }
+
     public static function LeerJSONCuenta(){
         $pathJSON = './banco.json';
         if(file_exists($pathJSON)){
@@ -49,7 +55,13 @@ class Cuenta{
                     $cuentaObj = new Cuenta($cuenta['numeroCuenta'], $cuenta['nombre'], $cuenta['tipoDoc'], $cuenta['numeroDoc'], $cuenta['mail'], $cuenta['tipoCuenta'], $cuenta['moneda'], $cuenta['saldo']); 
                     $cuentasObj[] = $cuentaObj;
                 }
-                return $cuentasObj;
+                $cuentasActivas = array();
+                foreach($cuentasObj as $cuenta){
+                    if($cuenta->numeroCuenta != 0){
+                        array_push($cuentasActivas, $cuenta); 
+                    }
+                }
+                return $cuentasActivas;
             }  
         }
         return [];
@@ -67,7 +79,7 @@ class Cuenta{
         $cuentas = Cuenta::LeerJSONCuenta();
         if(count($cuentas)> 0){
             foreach($cuentas as &$cuenta){
-                if($cuenta->numeroDoc === $this->numeroDoc){
+                if($cuenta->numeroCuenta == $this->numeroCuenta && $cuenta->tipoCuenta == $this->tipoCuenta){
                     $cuenta->saldo = $saldo;
                     Cuenta::EscribirJSONCuenta($cuentas);
                     return true;
@@ -88,12 +100,26 @@ class Cuenta{
         if(count($cuentas)> 0){
             foreach($cuentas as $cuenta){
                 if($cuenta->numeroCuenta == $numeroCuenta){
-                    //var_dump($cuenta);
                     return $cuenta;
                 }
             }
         }
         return false;
+    }
+
+    public static function DesactivarCuenta($numeroCuenta){
+        $cuentas = Cuenta::LeerJSONCuenta();
+        $desactivado = 0;
+        if(count($cuentas)> 0){
+            foreach($cuentas as &$cuenta){
+                if($cuenta->numeroCuenta == $numeroCuenta){
+                    $cuenta->numeroCuenta = $desactivado;
+                    Cuenta::EscribirJSONCuenta($cuentas);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public function TipoCuentaCorresponde($tipoCuenta){
@@ -150,6 +176,16 @@ class Cuenta{
             }
         }
        
+        return false;
+    }
+
+    public static function CuentaPorDni($dni){
+        $cuentas = Cuenta::LeerJSONCuenta();
+        foreach($cuentas as $cuenta){
+            if($cuenta->numeroDoc == $dni){
+                return $cuenta->numeroCuenta;
+            }
+        }
         return false;
     }
    

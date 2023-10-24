@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "8cd98e56-31a2-44f4-a290-42c969414eaa",
+		"name": "PP_Progra",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25702085"
+	},
+	"item": [
+		{
+			"name": "CuentaAlta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "accion",
+							"value": "alta",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "bianca",
+							"type": "text"
+						},
+						{
+							"key": "tipoDoc",
+							"value": "DNI",
+							"type": "text"
+						},
+						{
+							"key": "numeroDoc",
+							"value": "45686064",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "bianbdecima@gmail.-com",
+							"type": "text"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "Dolar",
+							"type": "text"
+						},
+						{
+							"key": "saldo",
+							"value": "450000",
+							"type": "text"
+						},
+						{
+							"key": "imagen",
+							"type": "file",
+							"src": "/E:/Mati/Cosas/iCloud Photos/Docke ❤️/0FE130AB-03C9-4A5C-A31B-49CC7BA89444.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultarCuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "accion",
+							"value": "consultar",
+							"type": "text"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"type": "text"
+						},
+						{
+							"key": "numeroCuenta",
+							"value": "711808",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DepositoCuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "accion",
+							"value": "depositar",
+							"type": "text"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"type": "text"
+						},
+						{
+							"key": "numeroCuenta",
+							"value": "711808",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "Dolar",
+							"type": "text"
+						},
+						{
+							"key": "deposito",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "imagen",
+							"type": "file",
+							"src": "/E:/Mati/Cosas/iCloud Photos/Docke ❤️/IMG_3742.JPEG"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "accion",
+							"value": "depositar",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Total Deposito (A)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php?accion=consultar&listado=A&tipoCuenta=Caja Ahorro&moneda=Dolar&fecha=20-10-2023",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "accion",
+							"value": "consultar"
+						},
+						{
+							"key": "listado",
+							"value": "A"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro"
+						},
+						{
+							"key": "moneda",
+							"value": "Dolar"
+						},
+						{
+							"key": "fecha",
+							"value": "20-10-2023"
+						},
+						{
+							"key": "numeroCuenta",
+							"value": "711808",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Deposito Usuario (B)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php?accion=consultar&listado=B&numeroCuenta=711808",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "accion",
+							"value": "consultar"
+						},
+						{
+							"key": "listado",
+							"value": "B"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"disabled": true
+						},
+						{
+							"key": "moneda",
+							"value": "Dolar",
+							"disabled": true
+						},
+						{
+							"key": "fecha",
+							"value": "20-10-2023",
+							"disabled": true
+						},
+						{
+							"key": "numeroCuenta",
+							"value": "711808"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Entre Fechas (C)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php?accion=consultar&listado=C&fechaUno=20-10-2023&fechaDos=23-10-2023",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "accion",
+							"value": "consultar"
+						},
+						{
+							"key": "listado",
+							"value": "C"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"disabled": true
+						},
+						{
+							"key": "moneda",
+							"value": "Dolar",
+							"disabled": true
+						},
+						{
+							"key": "fechaUno",
+							"value": "20-10-2023"
+						},
+						{
+							"key": "fechaDos",
+							"value": "23-10-2023"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Por Tipo (D)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php?accion=consultar&listado=D&tipoCuenta=Caja Ahorro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "accion",
+							"value": "consultar"
+						},
+						{
+							"key": "listado",
+							"value": "D"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro"
+						},
+						{
+							"key": "moneda",
+							"value": "Dolar",
+							"disabled": true
+						},
+						{
+							"key": "fechaUno",
+							"value": "20-10-2023",
+							"disabled": true
+						},
+						{
+							"key": "fechaDos",
+							"value": "23-10-2023",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Por Moneda (E)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php?accion=consultar&listado=E&moneda=Dolar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "accion",
+							"value": "consultar"
+						},
+						{
+							"key": "listado",
+							"value": "E"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"disabled": true
+						},
+						{
+							"key": "moneda",
+							"value": "Dolar"
+						},
+						{
+							"key": "fechaUno",
+							"value": "20-10-2023",
+							"disabled": true
+						},
+						{
+							"key": "fechaDos",
+							"value": "23-10-2023",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificaCuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "accion",
+							"value": "modificar",
+							"type": "text"
+						},
+						{
+							"key": "numeroCuenta",
+							"value": "711808",
+							"type": "text"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "bianco",
+							"type": "text"
+						},
+						{
+							"key": "tipoDoc",
+							"value": "DNI",
+							"type": "text"
+						},
+						{
+							"key": "numeroDoc",
+							"value": "45686060",
+							"type": "text"
+						},
+						{
+							"key": "mail",
+							"value": "biancodecimo@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "Peso",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetiroCuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "accion",
+							"value": "retirar",
+							"type": "text"
+						},
+						{
+							"key": "tipoCuenta",
+							"value": "Caja Ahorro",
+							"type": "text"
+						},
+						{
+							"key": "numeroCuenta",
+							"value": "711808",
+							"type": "text"
+						},
+						{
+							"key": "moneda",
+							"value": "Peso",
+							"type": "text"
+						},
+						{
+							"key": "monto",
+							"value": "4000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AjusteCuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "accion",
+							"value": "ajustar",
+							"type": "text"
+						},
+						{
+							"key": "idOperacion",
+							"value": "697",
+							"type": "text"
+						},
+						{
+							"key": "motivo",
+							"value": "deposito",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/PP_Progra3/index.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PP_Progra3",
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

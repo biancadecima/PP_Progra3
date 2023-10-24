@@ -1,6 +1,7 @@
 <?php
 $rutaImagenCuenta = 'C:\xampp\htdocs\PP_Progra3\ImagenesCuentas\2023';
 $rutaImagenDeposito = 'C:\xampp\htdocs\PP_Progra3\ImagenesDepositos\2023';
+$rutaBackUpCuentas = 'C:\xampp\htdocs\PP_Progra3\ImagenesBackupCuenta';
 
 switch($_SERVER['REQUEST_METHOD']){
     case "POST":
@@ -44,6 +45,19 @@ switch($_SERVER['REQUEST_METHOD']){
             echo "Error. Faltan parametros.";
         }   
         break;
+    case "DELETE":
+        parse_str(file_get_contents('php://input'), $_DELETE);
+        if(isset($_DELETE['accion'])){
+            switch($_DELETE['accion']){
+            case 'eliminar':
+                include './BorrarCuenta.php';
+                borrarCuenta($_DELETE, $rutaImagenCuenta, $rutaBackUpCuentas);
+                break;
+            }
+        }else{
+            echo "Error. Faltan parametros.";
+        }   
+        break;
     case "GET":
         if(isset($_GET['accion'])){
             switch($_GET['accion']){
@@ -64,6 +78,9 @@ switch($_SERVER['REQUEST_METHOD']){
                             break;
                         case "E":
                             consultaPorMoneda();
+                            break;
+                        case "F":
+                            consultaOperaciones();
                             break;
                         default:
                             echo 'No existe el listado';

@@ -1,6 +1,7 @@
 <?php
-
+include './Cuenta.php';
 include './Deposito.php';
+include './Retiro.php';
 /**4- ConsultaMovimientos.php: (por GET)
 Datos a consultar:
 a- El total depositado (monto) por tipo de cuenta y moneda en un día en
@@ -9,7 +10,34 @@ anterior.
 b- El listado de depósitos para un usuario en particular.
 c- El listado de depósitos entre dos fechas ordenado por nombre.
 d- El listado de depósitos por tipo de cuenta.
-e- El listado de depósitos por moneda. */
+e- El listado de depósitos por moneda. 
+
+f- El listado de todas las operaciones (depósitos y retiros) por usuario
+*/
+
+function consultaOperaciones(){
+    if(isset($_GET["numeroDoc"])){
+        $numeroDoc = $_GET["numeroDoc"];
+
+        $numeroCuenta = Cuenta::CuentaPorDni($numeroDoc);
+
+        $depositos = Deposito::DepositosPorUsuario($numeroCuenta);
+        if($depositos != false){
+            echo"Los depositos por Usuario son:";
+            Deposito::MostrarDepositos($depositos);
+        }
+        $retiros = Retiro::RetirosPorUsuario($numeroCuenta);
+        if($retiros != false){
+            echo"Los retiros por Usuario son:";
+            Retiro::MostrarRetiros($retiros);
+        }
+    }else{
+        echo "Parametros insuficientes para la consulta F";
+    }
+}
+
+
+
 function consultaTotalDeposito(){
     if(isset($_GET["tipoCuenta"]) && isset($_GET["moneda"])){
         $tipoCuenta = $_GET["tipoCuenta"];

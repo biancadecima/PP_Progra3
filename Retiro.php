@@ -68,5 +68,32 @@ class Retiro{
         return false;
     }
 
+    public static function RetirosPorUsuario($numeroCuenta){
+        $retirosUsuario = array();
+        $retiros = Retiro::LeerJSONRetiro();
+        if(count($retiros)>0){
+            foreach($retiros as $retiro){
+                if($retiro->numeroCuenta == $numeroCuenta){
+                    array_push($retirosUsuario, $retiro);
+                }
+            }
+            return $retirosUsuario;
+        }
+        return false;
+    } 
+
+    public static function MostrarRetiros($retiros){
+        if(count($retiros)>0){
+            foreach($retiros as $retiro){
+                echo "ID: ", $retiro->id, "\n";
+                echo "Tipo Cuenta: ", $retiro->tipoCuenta, "\n";
+                echo "Numero Cuenta: ", $retiro->numeroCuenta, "\n";
+                echo "Moneda: ", $retiro->moneda, "\n";
+                echo "Monto: ", $retiro->monto, "\n";
+                echo "Fecha: ", $retiro->fecha, "\n\n";
+            }
+        }
+    }
+
 }
 ?>
